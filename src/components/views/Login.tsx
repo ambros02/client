@@ -6,6 +6,7 @@ import { Button } from "components/ui/Button";
 import "styles/views/Login.scss";
 import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
+import BaseLogin from "./BaseLoginInfo";
 
 /*
 It is possible to add multiple components inside a single file,
@@ -35,8 +36,8 @@ FormField.propTypes = {
 
 const Login = () => {
   const navigate = useNavigate();
-  const [name, setName] = useState<string>(null);
-  const [username, setUsername] = useState<string>(null);
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
 
   const doLogin = async () => {
     try {
@@ -58,33 +59,22 @@ const Login = () => {
     }
   };
 
-  return (
-    <BaseContainer>
-      <div className="login container">
-        <div className="login form">
-          <FormField
-            label="Username"
-            value={username}
-            onChange={(un: string) => setUsername(un)}
-          />
-          <FormField
-            label="Name"
-            value={name}
-            onChange={(n) => setName(n)}
-          />
-          <div className="login button-container">
-            <Button
-              disabled={!username || !name}
-              width="100%"
-              onClick={() => doLogin()}
-            >
-              Login
-            </Button>
-          </div>
+  return(
+      <>
+        <div className="login button-container">
+          <Button>register instead</Button>
         </div>
-      </div>
-    </BaseContainer>
-  );
+        <BaseLogin
+            username={username}
+            setUsername={setUsername}
+            password={password}
+            setPassword={setPassword}
+            doAction={doLogin}
+            buttonName="login"
+        />
+      </>
+
+  )
 };
 
 /**
