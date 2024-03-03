@@ -39,6 +39,10 @@ const Login = () => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
+
+  function moveToRegister(){
+      navigate("/register");
+  }
   const doLogin = async () => {
     try {
       const requestBody = JSON.stringify({ username, name });
@@ -62,7 +66,7 @@ const Login = () => {
   return(
       <>
         <div className="login button-container">
-          <Button>register instead</Button>
+          <Button onClick={moveToRegister}>register instead</Button>
         </div>
         <BaseLogin
             username={username}

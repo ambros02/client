@@ -3,6 +3,7 @@ import React, {useState} from "react";
 import {api, handleError} from "helpers/api";
 import User from "models/User";
 import BaseLogin from "./BaseLoginInfo";
+import {Button} from "../ui/Button";
 
 
 
@@ -11,6 +12,10 @@ export default function Register(props){
     const navigate = useNavigate();
     const [username,setUsername] = useState("");
     const [password,setPassword] = useState("");
+
+    function moveToLogin(){
+        navigate("/login");
+    }
 
     async function doRegister(){
         try {
@@ -33,13 +38,21 @@ export default function Register(props){
         }
 
     }
-    return <BaseLogin
-        username={username}
-        setUsername={setUsername}
-        password={password}
-        setPassword={setPassword}
-        doAction={doRegister}
-        buttonName="register"
-    />
+    return (
+        <>
+            <div className="login button-container">
+                <Button onClick={moveToLogin}>login instead</Button>
+            </div>
+            <BaseLogin
+                username={username}
+                setUsername={setUsername}
+                password={password}
+                setPassword={setPassword}
+                doAction={doRegister}
+                buttonName="register"
+            />
+        </>
+    )
+
 
 }
