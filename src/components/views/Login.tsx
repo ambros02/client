@@ -47,16 +47,20 @@ const Login = () => {
   const doLogin = async () => {
     try {
       const requestBody = JSON.stringify({ username, name , password });
-      const response = await api.post("/users", requestBody);
+      const response = await api.patch("/users/login", requestBody);
+      const result = response.data;
 
-      // Get the returned user and update a new object.
-      const user = new User(response.data);
+      //check if username exists -> why this way check out
+      if (!result.usernameExists){
+          alert("the username does not exist");
+      } else if(!result.passwordCorrect){
+          alert("wrong password");
+      } else{
+          localStorage.setItem("token",result.token);
+          navigate("/game");
+      }
 
-      // Store the token into the local storage.
-      localStorage.setItem("token", user.token);
 
-      // Login successfully worked --> navigate to the route /game in the GameRouter
-      navigate("/game");
     } catch (error) {
       alert(
         `Something went wrong during the login: \n${handleError(error)}`
