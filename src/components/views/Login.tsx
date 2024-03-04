@@ -36,6 +36,7 @@ FormField.propTypes = {
 
 const Login = () => {
   const navigate = useNavigate();
+  const [name, setName] = useState<string>("");
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
@@ -45,7 +46,7 @@ const Login = () => {
   }
   const doLogin = async () => {
     try {
-      const requestBody = JSON.stringify({ username, name });
+      const requestBody = JSON.stringify({ username, name , password });
       const response = await api.post("/users", requestBody);
 
       // Get the returned user and update a new object.
@@ -69,6 +70,8 @@ const Login = () => {
           <Button onClick={moveToRegister}>register instead</Button>
         </div>
         <BaseLogin
+            name={name}
+            setName={setName}
             username={username}
             setUsername={setUsername}
             password={password}

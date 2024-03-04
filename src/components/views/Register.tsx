@@ -10,8 +10,9 @@ import {Button} from "../ui/Button";
 export default function Register(props){
 
     const navigate = useNavigate();
-    const [username,setUsername] = useState("");
-    const [password,setPassword] = useState("");
+    const [name,setName] = useState<string>("");
+    const [username,setUsername] = useState<string>("");
+    const [password,setPassword] = useState<string>("");
 
     function moveToLogin(){
         navigate("/login");
@@ -20,7 +21,7 @@ export default function Register(props){
     async function doRegister(){
         try {
             let name = password;
-            const requestBody = JSON.stringify({ name,username });
+            const requestBody = JSON.stringify({ name,username,password });
             const response = await api.post("/users", requestBody);
 
             // Get the returned user and update a new object.
@@ -44,6 +45,8 @@ export default function Register(props){
                 <Button onClick={moveToLogin}>login instead</Button>
             </div>
             <BaseLogin
+                name={name}
+                setName={setName}
                 username={username}
                 setUsername={setUsername}
                 password={password}

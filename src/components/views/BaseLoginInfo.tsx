@@ -2,6 +2,7 @@ import React from "react";
 import {Button} from "../ui/Button";
 import BaseContainer from "../ui/BaseContainer";
 import PropTypes from "prop-types";
+import {Form} from "react-router-dom";
 
 export const FormField = (props) => {
     return (
@@ -29,6 +30,11 @@ export default function BaseLogin(props){
         <BaseContainer>
             <div className="login container">
                 <div className="login form">
+                    <FormField
+                        label="name"
+                        value={props.name}
+                        onChange={(un:String) => props.setName(un)}
+                    />
                     <FormField
                         label="Username"
                         value={props.username}
