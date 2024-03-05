@@ -2,7 +2,7 @@ import {useNavigate} from "react-router-dom";
 import React, {useState} from "react";
 import {api, handleError} from "helpers/api";
 import User from "models/User";
-import BaseLogin from "./BaseLoginInfo";
+import BaseLogin from "../ui/BaseLoginInfo";
 import {Button} from "../ui/Button";
 
 

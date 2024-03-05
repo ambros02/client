@@ -1,6 +1,6 @@
 import React from "react";
-import {Button} from "../ui/Button";
-import BaseContainer from "../ui/BaseContainer";
+import {Button} from "./Button";
+import BaseContainer from "./BaseContainer";
 import PropTypes from "prop-types";
 import {Form} from "react-router-dom";
 
