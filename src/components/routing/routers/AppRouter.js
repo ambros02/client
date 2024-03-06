@@ -33,7 +33,7 @@ const AppRouter = () => {
           <Route path="/login" element={<Login/>} />
         </Route>
 
-        <Route path="/edit" element={<Outlet />}>
+        <Route path="/edit" element={<GameGuard />}>
           <Route path="/edit" element={<UserEdit />}/>
         </Route>
 
