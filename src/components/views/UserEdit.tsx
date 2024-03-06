@@ -3,7 +3,7 @@ import React, {useState} from "react";
 import BaseContainer from "../ui/BaseContainer";
 import { api } from "helpers/api";
 import {useNavigate} from "react-router-dom";
-import {User} from "../../types";
+import EditForms from "../ui/EditForms";
 
 
 
@@ -16,6 +16,8 @@ export default function UserEdit() {
     const [birthday,setBirthday] = useState(null);
     const [creationDate,setCreationDate] = useState(null);
     const [status,setStatus] = useState(null);
+    const [editing, setEditing] = useState(false);
+
 
     async function fetchData(id){
         let response = await api.get(`/users/?id=${id}`);
@@ -25,31 +27,38 @@ export default function UserEdit() {
         setCreationDate(result.creationDate);
         setBirthday(result.birthday);
         setStatus(result.status);
-
     }
-    fetchData(userId);
-    let canEdit = (id === sessionStorage.getItem("id"));
-    const navigate = useNavigate();
 
+    fetchData(userId);
+
+    let canEdit = (id === parseInt(localStorage.getItem("id")));
+    const navigate = useNavigate();
 
     function goBack(){
         sessionStorage.removeItem("id");
         navigate("/game")
     }
 
+    function handleChange(){
+
+    }
     return (
         <BaseContainer>
-            <h1>at least something</h1>
             <div>username: {username}</div>
             <div>id: {id}</div>
             <div>creation date: {creationDate}</div>
             <div>status: {status}</div>
             <div>birthday: {birthday}</div>
-            <Button onClick={goBack}>go Back</Button>
-            <h1>{canEdit}</h1>
-            {canEdit ? <Button>edit</Button> : null}
+            <div>
+                <Button onClick={goBack}>go Back</Button>
+            </div>
+            <div>
+                {canEdit ? <Button onClick={() => setEditing(true)}>edit</Button> : null}
+            </div>
+
+            {editing ? <EditForms userId={id} editing={setEditing}></EditForms> : null}
+
         </BaseContainer>
 
     )
-
 }
