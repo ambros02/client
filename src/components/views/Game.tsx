@@ -32,6 +32,8 @@ const Game = () => {
   const [users, setUsers] = useState<User[]>(null);
 
   const logout = (): void => {
+    let response = api.patch("/users/logout",{"id":localStorage.getItem("id")});
+    localStorage.removeItem("id");
     localStorage.removeItem("token");
     navigate("/login");
   };

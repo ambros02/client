@@ -56,6 +56,7 @@ const Login = () => {
       } else if(!result.passwordCorrect){
           alert("wrong password");
       } else{
+          localStorage.setItem("id",result.id);
           localStorage.setItem("token",result.token);
           navigate("/game");
       }
