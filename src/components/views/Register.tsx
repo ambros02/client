@@ -6,29 +6,28 @@ import BaseLogin from "../ui/BaseLoginInfo";
 import {Button} from "../ui/Button";
 
 
-
-export default function Register(props){
+export default function Register(props) {
 
     const navigate = useNavigate();
-    const [name,setName] = useState<string>("");
-    const [username,setUsername] = useState<string>("");
-    const [password,setPassword] = useState<string>("");
+    const [name, setName] = useState<string>("");
+    const [username, setUsername] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
 
-    function moveToLogin(){
+    function moveToLogin() {
         navigate("/login");
     }
 
-    async function doRegister(){
+    async function doRegister() {
         try {
             let name = password;
-            const requestBody = JSON.stringify({ name,username,password });
+            const requestBody = JSON.stringify({name, username, password});
             const response = await api.post("/users", requestBody);
 
             // Get the returned user and update a new object.
             const user = new User(response.data);
 
             // Store the token into the local storage.
-            localStorage.setItem("id",user.id);
+            localStorage.setItem("id", user.id);
             localStorage.setItem("token", user.token);
 
             // Register successfully worked --> navigate to the route /game in the GameRouter
@@ -40,6 +39,7 @@ export default function Register(props){
         }
 
     }
+
     return (
         <>
             <div className="login button-container">
