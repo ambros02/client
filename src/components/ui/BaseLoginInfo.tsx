@@ -9,6 +9,7 @@ export const FormField = (props) => {
         <div className="login field">
             <label className="login label">{props.label}</label>
             <input
+                type={props.type}
                 className="login input"
                 placeholder="enter here.."
                 value={props.value}
@@ -20,6 +21,7 @@ export const FormField = (props) => {
 
 
 FormField.propTypes = {
+    type: PropTypes.string,
     label: PropTypes.string,
     value: PropTypes.string,
     onChange: PropTypes.func,
@@ -41,6 +43,7 @@ export default function BaseLogin(props) {
                         onChange={(un: string) => props.setUsername(un)}
                     />
                     <FormField
+                        type="password"
                         label="Password"
                         value={props.password}
                         onChange={(n) => props.setPassword(n)}

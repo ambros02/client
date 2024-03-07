@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {api} from "../../helpers/api.js";
 import PropTypes from "prop-types";
+import "../../styles/ui/EditForms.scss"
 
 
 export default function EditForms(props) {
@@ -33,12 +34,12 @@ export default function EditForms(props) {
 
     return (
         <div>
-            <form>
-                <label>username</label>
-                <input type="text" name="username" value={username} onChange={handleChange}/>
-                <label>birthday</label>
-                <input type="text" name="birthday" value={birthday} onChange={handleChange}/>
-                <input type="button" value={"submit"} onClick={(e) => handleSubmit(e, props.userId)}/>
+            <form className="editform">
+                <label className="labeledit">username</label>
+                <input className="inputedit" type="text" name="username" value={username} onChange={handleChange}/>
+                <label className="labeledit">birthday: (format YYYY-MM-DD)</label>
+                <input className="inputedit" type="text" name="birthday" value={birthday} onChange={handleChange}/>
+                <input className="editbutton" type="button" value={"submit"} onClick={(e) => handleSubmit(e, props.userId)}/>
             </form>
         </div>
     )

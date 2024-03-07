@@ -1,0 +1,28 @@
+@import "../theme";
+
+
+.edits{
+  width: 70%;
+  background-color: #FC819E;
+  border-radius: 50px;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: $dropShadow;
+
+  .text{
+    width: 50%;
+    border-radius: 0.75em;
+    background-color: #F7418F;
+    padding: 10px 30px;
+    margin: 15px 0px;
+  }
+
+  .buttonedit{
+    margin: 15px 0px;
+    background-color: #262632;
+    border-radius: 26%;
+    color: #F7418F;
+  }
+}

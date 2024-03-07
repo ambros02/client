@@ -4,6 +4,7 @@ import BaseContainer from "../ui/BaseContainer";
 import {api} from "helpers/api";
 import {useNavigate} from "react-router-dom";
 import EditForms from "../ui/EditForms";
+import "../../styles/views/UserEdit.scss";
 
 
 export default function UserEdit() {
@@ -41,16 +42,16 @@ export default function UserEdit() {
     }
 
     return (
-        <BaseContainer>
-            <div>username: {username}</div>
-            <div>id: {id}</div>
-            <div>creation date: {creationDate}</div>
-            <div>status: {status}</div>
-            <div>birthday: {birthday}</div>
-            <div>
+        <BaseContainer className="edits">
+            <div className="text">username: {username}</div>
+            <div className="text">id: {id}</div>
+            <div className="text">creation date: {creationDate}</div>
+            <div className="text">status: {status}</div>
+            <div className="text">birthday: {birthday}</div>
+            <div className="buttonedit">
                 <Button onClick={goBack}>go Back</Button>
             </div>
-            <div>
+            <div className="buttonedit">
                 {canEdit ? <Button onClick={() => setEditing(true)}>edit</Button> : null}
             </div>
 

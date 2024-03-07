@@ -1,5 +1,6 @@
 import React from "react";
 import BaseContainer from "./BaseContainer";
+import PropTypes from "prop-types";
 
 
 function UserDisplay(props) {
@@ -20,5 +21,11 @@ function UserDisplay(props) {
 
 }
 
+UserDisplay.propTypes = {
+    name: PropTypes.string,
+    id: PropTypes.long,
+    username: PropTypes.string,
+    creationTime: PropTypes.string,
+}
 
 export default userDisplay;
