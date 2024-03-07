@@ -9,20 +9,20 @@ import "styles/views/Game.scss";
 import {User} from "types";
 
 const Player = ({user}: { user: User }) => {
-        const navigate = useNavigate();
+    const navigate = useNavigate();
 
-        function navigateUser() {
-            sessionStorage.setItem("id", String(user.id));
-            navigate("/edit");
-        }
+    function navigateUser() {
+        sessionStorage.setItem("id", String(user.id));
+        navigate("/edit");
+    }
 
-        return (
-            <div className="player container" onClick={navigateUser}>
-                <div className="player username">{user.username}</div>
-                <div className="player name">{user.name}</div>
-                <div className="player id">id: {user.id}</div>
-            </div>
-        )
+    return (
+        <div className="player container" onClick={navigateUser}>
+            <div className="player username">{user.username}</div>
+            <div className="player name">{user.name}</div>
+            <div className="player id">id: {user.id}</div>
+        </div>
+    )
 
     }
 ;

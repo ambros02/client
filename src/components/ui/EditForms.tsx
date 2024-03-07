@@ -12,12 +12,12 @@ export default function EditForms(props) {
     function handleChange(event) {
         let {name, value} = event.target;
         switch (name) {
-            case "username":
-                setUsername(value);
-                break;
-            case "birthday":
-                setBirthday(value);
-                break;
+        case "username":
+            setUsername(value);
+            break;
+        case "birthday":
+            setBirthday(value);
+            break;
         }
 
 
