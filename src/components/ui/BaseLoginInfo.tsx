@@ -61,3 +61,14 @@ export default function BaseLogin(props){
 
 
 }
+BaseLogin.propTypes = {
+    name : PropTypes.String,
+    setName : PropTypes.func,
+    username : PropTypes.String,
+    setUsername : PropTypes.func,
+    password : PropTypes.String,
+    setPassword : PropTypes.func,
+    doAction : PropTypes.func,
+    buttonName : PropTypes.String,
+};
+
