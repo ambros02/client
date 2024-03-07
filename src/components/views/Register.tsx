@@ -19,7 +19,6 @@ export default function Register(props) {
 
     async function doRegister() {
         try {
-            let name = password;
             const requestBody = JSON.stringify({name, username, password});
             const response = await api.post("/users", requestBody);
 

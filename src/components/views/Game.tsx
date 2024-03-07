@@ -19,7 +19,6 @@ const Player = ({user}: { user: User }) => {
     return (
         <div className="player container" onClick={navigateUser}>
             <div className="player username">{user.username}</div>
-            <div className="player name">{user.name}</div>
             <div className="player id">id: {user.id}</div>
         </div>
     )
