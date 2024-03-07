@@ -6,6 +6,7 @@ import { Button } from "components/ui/Button";
 import "styles/views/Login.scss";
 import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
+import BaseLogin from "../ui/BaseLoginInfo";
 
 /*
 It is possible to add multiple components inside a single file,
@@ -35,22 +36,32 @@ FormField.propTypes = {
 
 const Login = () => {
   const navigate = useNavigate();
-  const [name, setName] = useState<string>(null);
-  const [username, setUsername] = useState<string>(null);
+  const [name, setName] = useState<string>("");
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
 
+
+  function moveToRegister(){
+      navigate("/register");
+  }
   const doLogin = async () => {
     try {
-      const requestBody = JSON.stringify({ username, name });
-      const response = await api.post("/users", requestBody);
+      const requestBody = JSON.stringify({ username, name , password });
+      const response = await api.patch("/users/login", requestBody);
+      const result = response.data;
 
-      // Get the returned user and update a new object.
-      const user = new User(response.data);
+      //check if username exists -> why this way check out
+      if (!result.usernameExists){
+          alert("the username does not exist");
+      } else if(!result.passwordCorrect){
+          alert("wrong password");
+      } else{
+          localStorage.setItem("id",result.id);
+          localStorage.setItem("token",result.token);
+          navigate("/game");
+      }
 
-      // Store the token into the local storage.
-      localStorage.setItem("token", user.token);
 
-      // Login successfully worked --> navigate to the route /game in the GameRouter
-      navigate("/game");
     } catch (error) {
       alert(
         `Something went wrong during the login: \n${handleError(error)}`
@@ -58,33 +69,24 @@ const Login = () => {
     }
   };
 
-  return (
-    <BaseContainer>
-      <div className="login container">
-        <div className="login form">
-          <FormField
-            label="Username"
-            value={username}
-            onChange={(un: string) => setUsername(un)}
-          />
-          <FormField
-            label="Name"
-            value={name}
-            onChange={(n) => setName(n)}
-          />
-          <div className="login button-container">
-            <Button
-              disabled={!username || !name}
-              width="100%"
-              onClick={() => doLogin()}
-            >
-              Login
-            </Button>
-          </div>
+  return(
+      <>
+        <div className="login button-container">
+          <Button onClick={moveToRegister}>register instead</Button>
         </div>
-      </div>
-    </BaseContainer>
-  );
+        <BaseLogin
+            name={name}
+            setName={setName}
+            username={username}
+            setUsername={setUsername}
+            password={password}
+            setPassword={setPassword}
+            doAction={doLogin}
+            buttonName="login"
+        />
+      </>
+
+  )
 };
 
 /**

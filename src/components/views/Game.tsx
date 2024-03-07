@@ -8,13 +8,24 @@ import PropTypes from "prop-types";
 import "styles/views/Game.scss";
 import { User } from "types";
 
-const Player = ({ user }: { user: User }) => (
-  <div className="player container">
-    <div className="player username">{user.username}</div>
-    <div className="player name">{user.name}</div>
-    <div className="player id">id: {user.id}</div>
-  </div>
-);
+const Player = ({ user }: { user: User }) => {
+  const navigate = useNavigate();
+
+  function navigateUser(){
+    sessionStorage.setItem("id",String(user.id));
+    navigate("/edit");
+  }
+
+  return (
+      <div className="player container" onClick={navigateUser}>
+        <div className="player username">{user.username}</div>
+        <div className="player name">{user.name}</div>
+        <div className="player id">id: {user.id}</div>
+      </div>
+  )
+
+}
+;
 
 Player.propTypes = {
   user: PropTypes.object,
@@ -32,6 +43,8 @@ const Game = () => {
   const [users, setUsers] = useState<User[]>(null);
 
   const logout = (): void => {
+    let response = api.patch("/users/logout",{"id":localStorage.getItem("id")});
+    localStorage.removeItem("id");
     localStorage.removeItem("token");
     navigate("/login");
   };
@@ -87,7 +100,7 @@ const Game = () => {
         <ul className="game user-list">
           {users.map((user: User) => (
             <li key={user.id}>
-              <Player user={user} />
+              <Player user={user}/>
             </li>
           ))}
         </ul>
