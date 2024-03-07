@@ -2,7 +2,6 @@ import React from "react";
 import {Button} from "./Button";
 import BaseContainer from "./BaseContainer";
 import PropTypes from "prop-types";
-import {Form} from "react-router-dom";
 
 export const FormField = (props) => {
     return (
@@ -25,15 +24,15 @@ FormField.propTypes = {
     onChange: PropTypes.func,
 };
 
-export default function BaseLogin(props){
-    return(
+export default function BaseLogin(props) {
+    return (
         <BaseContainer>
             <div className="login container">
                 <div className="login form">
                     <FormField
                         label="name"
                         value={props.name}
-                        onChange={(un:String) => props.setName(un)}
+                        onChange={(un: String) => props.setName(un)}
                     />
                     <FormField
                         label="Username"
@@ -57,18 +56,18 @@ export default function BaseLogin(props){
                 </div>
             </div>
         </BaseContainer>
-        )
+    )
 
 
 }
 BaseLogin.propTypes = {
-    name : PropTypes.String,
-    setName : PropTypes.func,
-    username : PropTypes.String,
-    setUsername : PropTypes.func,
-    password : PropTypes.String,
-    setPassword : PropTypes.func,
-    doAction : PropTypes.func,
-    buttonName : PropTypes.String,
+    name: PropTypes.String,
+    setName: PropTypes.func,
+    username: PropTypes.String,
+    setUsername: PropTypes.func,
+    password: PropTypes.String,
+    setPassword: PropTypes.func,
+    doAction: PropTypes.func,
+    buttonName: PropTypes.String,
 };
 
