@@ -24,7 +24,7 @@ const Player = ({user}: { user: User }) => {
         </div>
     )
 
-    }
+}
 ;
 
 Player.propTypes = {
