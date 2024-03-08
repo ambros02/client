@@ -27,6 +27,7 @@ export default function EditForms(props) {
     async function handleSubmit(event, id) {
         let requestBody = {username, birthday}
         let response = await api.put(`/users/?id=${id}`, requestBody);
+
         setBirthday("");
         setUsername("");
         props.editing(false);
@@ -38,7 +39,7 @@ export default function EditForms(props) {
                 <label className="labeledit">username</label>
                 <input className="inputedit" type="text" name="username" value={username} onChange={handleChange}/>
                 <label className="labeledit">birthday: (format YYYY-MM-DD)</label>
-                <input className="inputedit" type="text" name="birthday" value={birthday} onChange={handleChange}/>
+                <input className="inputedit" type="date" name="birthday" value={birthday} onChange={handleChange}/>
                 <input className="editbutton" type="button" value={"submit"} onClick={(e) => handleSubmit(e, props.userId)}/>
             </form>
         </div>

@@ -48,6 +48,7 @@ export default function BaseLogin(props) {
                         value={props.password}
                         onChange={(n) => props.setPassword(n)}
                     />
+                    <p>{props.message}</p>
                     <div className="login button-container">
                         <Button
                             disabled={!props.username || !props.password}
@@ -73,5 +74,6 @@ BaseLogin.propTypes = {
     setPassword: PropTypes.func,
     doAction: PropTypes.func,
     buttonName: PropTypes.String,
+    message: PropTypes.String,
 };
 

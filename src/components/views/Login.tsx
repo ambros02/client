@@ -19,6 +19,7 @@ const Login = () => {
     const [name, setName] = useState<string>("");
     const [username, setUsername] = useState<string>("");
     const [password, setPassword] = useState<string>("");
+    const [message,setMessage] = useState<string>("");
 
 
     function moveToRegister() {
@@ -33,9 +34,9 @@ const Login = () => {
 
             //check if username exists -> why this way check out
             if (!result.usernameExists) {
-                alert("the username does not exist");
+                setMessage("the username does not exist");
             } else if (!result.passwordCorrect) {
-                alert("wrong password");
+                setMessage("wrong password");
             } else {
                 localStorage.setItem("id", result.id);
                 localStorage.setItem("token", result.token);
@@ -64,6 +65,7 @@ const Login = () => {
                 setPassword={setPassword}
                 doAction={doLogin}
                 buttonName="login"
+                message={message}
             />
         </>
 
