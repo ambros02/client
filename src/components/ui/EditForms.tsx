@@ -27,7 +27,7 @@ export default function EditForms(props) {
     async function handleSubmit(event, id) {
         try{
             let requestBody = {username, birthday}
-            let response = await api.put(`/users/?id=${id}`, requestBody);
+            let response = await api.put(`/users/${id}?id=${id}`, requestBody);
             setBirthday("");
             setUsername("");
             props.editing(false);

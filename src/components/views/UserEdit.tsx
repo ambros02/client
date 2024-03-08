@@ -18,7 +18,7 @@ export default function UserEdit() {
 
 
     async function fetchData(id) {
-        let response = await api.get(`/users/?id=${id}`);
+        let response = await api.get(`/users/${id}?id=${id}`);
         let result = response.data;
         setId(result.id);
         setUsername(result.username);
