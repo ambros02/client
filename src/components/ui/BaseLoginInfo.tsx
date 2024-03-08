@@ -33,11 +33,6 @@ export default function BaseLogin(props) {
             <div className="login container">
                 <div className="login form">
                     <FormField
-                        label="name"
-                        value={props.name}
-                        onChange={(un: String) => props.setName(un)}
-                    />
-                    <FormField
                         label="Username"
                         value={props.username}
                         onChange={(un: string) => props.setUsername(un)}
@@ -48,7 +43,7 @@ export default function BaseLogin(props) {
                         value={props.password}
                         onChange={(n) => props.setPassword(n)}
                     />
-                    <p>{props.message}</p>
+                    <p style={{color:"red"}}>{props.message}</p>
                     <div className="login button-container">
                         <Button
                             disabled={!props.username || !props.password}
@@ -66,8 +61,6 @@ export default function BaseLogin(props) {
 
 }
 BaseLogin.propTypes = {
-    name: PropTypes.String,
-    setName: PropTypes.func,
     username: PropTypes.String,
     setUsername: PropTypes.func,
     password: PropTypes.String,

@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {api} from "../../helpers/api.js";
+import { api, handleError } from "../../helpers/api.js";
 import PropTypes from "prop-types";
 import "../../styles/ui/EditForms.scss"
 
@@ -25,12 +25,19 @@ export default function EditForms(props) {
     }
 
     async function handleSubmit(event, id) {
-        let requestBody = {username, birthday}
-        let response = await api.put(`/users/?id=${id}`, requestBody);
+        try{
+            let requestBody = {username, birthday}
+            let response = await api.put(`/users/?id=${id}`, requestBody);
+            setBirthday("");
+            setUsername("");
+            props.editing(false);
+        }catch (error) {
+            alert(
+                `Something went wrong during the login: \n${handleError(error)}`
+            );
+        }
 
-        setBirthday("");
-        setUsername("");
-        props.editing(false);
+
     }
 
     return (

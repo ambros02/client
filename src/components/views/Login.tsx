@@ -3,7 +3,6 @@ import {api, handleError} from "helpers/api";
 import {useNavigate} from "react-router-dom";
 import {Button} from "components/ui/Button";
 import "styles/views/Login.scss";
-import PropTypes from "prop-types";
 import BaseLogin from "../ui/BaseLoginInfo";
 
 /*
@@ -16,7 +15,6 @@ specific components that belong to the main one in the same file.
 
 const Login = () => {
     const navigate = useNavigate();
-    const [name, setName] = useState<string>("");
     const [username, setUsername] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [message,setMessage] = useState<string>("");
@@ -28,7 +26,7 @@ const Login = () => {
 
     const doLogin = async () => {
         try {
-            const requestBody = JSON.stringify({username, name, password});
+            const requestBody = JSON.stringify({username, password});
             const response = await api.patch("/users/login", requestBody);
             const result = response.data;
 
@@ -57,8 +55,6 @@ const Login = () => {
                 <Button onClick={moveToRegister}>register instead</Button>
             </div>
             <BaseLogin
-                name={name}
-                setName={setName}
                 username={username}
                 setUsername={setUsername}
                 password={password}
