@@ -45,7 +45,7 @@ export default function EditForms(props) {
             <form className="editform">
                 <label className="labeledit">username</label>
                 <input className="inputedit" type="text" name="username" value={username} onChange={handleChange}/>
-                <label className="labeledit">birthday: (format YYYY-MM-DD)</label>
+                <label className="labeledit">birthday: </label>
                 <input className="inputedit" type="date" name="birthday" value={birthday} onChange={handleChange}/>
                 <input className="editbutton" type="button" value={"submit"} onClick={(e) => handleSubmit(e, props.userId)}/>
             </form>
